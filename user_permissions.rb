@@ -16,27 +16,27 @@ class UserPermissions
     user_permissions = Set.new
     if (@user != nil)
       user_permissions << :DEFAULT_PERMISSION
-      if (has_cm_team_role(@user)) 
+      if (has_cm_team_role) 
         user_permissions << :CM_TEAM_ROLE_PERMISSION
       end
-      if (has_cm_invoice_view_role(@user) || has_invoice_finance_role(@user))
+      if (has_cm_invoice_view_role || has_invoice_finance_role)
         user_permissions << :CM_INVOICE_USER_PERMISSION
         user_permissions << :INVOICE_VIEW_PERMISSION
         user_permissions << :ACCESS_ALL_INVOICE_PERMISSION
       end
-      if (has_invoice_finance_role(@user)) 
+      if (has_invoice_finance_role) 
         user_permissions << :FINANCE_INVOICE_PERMISSION
       end
-      if (has_application_access(@user))
+      if (has_application_access)
         user_permissions << :CM_INVOICE_USER_PERMISSION
       end
-      if (has_application_access(@user, :CM_INVOICE_ROLE)) 
+      if (has_application_access(:CM_INVOICE_ROLE)) 
         user_permissions << :CM_ANY_INVOICE_PERMISSION
       end
-      if (has_application_access(@user, :PA_INVOICE_ROLE)) 
+      if (has_application_access(:PA_INVOICE_ROLE)) 
         user_permissions << :PA_ANY_INVOICE_PERMISSION
       end
-      if (has_application_access(@user, :SDT_INVOICE_ROLE))
+      if (has_application_access(:SDT_INVOICE_ROLE))
         user_permissions << :SDT_ANY_INVOICE_PERMISSION
       end
     end
@@ -47,28 +47,28 @@ class UserPermissions
   def get_cm_invoice_user_permissions
     invoice_permissions = Set.new
     if (@cm_invoice)
-      if (has_read_access(@user, @cm_invoice)) 
+      if (has_read_access) 
         invoice_permissions << :INVOICE_VIEW_PERMISSION
       end
-      if (has_edit_access(@user, @cm_invoice)) 
+      if (has_edit_access) 
         invoice_permissions << :COMMENT_ADD_PERMISSION
       end
-      if (has_cm_invoice_close_right(@user, @cm_invoice)) 
+      if (has_cm_invoice_close_right) 
         invoice_permissions << :INVOICE_CLOSE_PERMISSION
       end
-      if (has_approve_access(@user, @cm_invoice))
+      if (has_approve_access)
         invoice_permissions << :INVOICE_APPROVE_PERMISSION
       end
-      if (has_reject_access(@user, @cm_invoice))
+      if (has_reject_access)
         invoice_permissions << :INVOICE_REJECT_PERMISSION
       end
-      if (has_configure_rules_access(@user, @cm_invoice))
+      if (has_configure_rules_access)
         invoice_permissions << :CONFIGURE_RULES_PERMISSION
       end
-      if (has_view_rules_access(@user, @cm_invoice)) 
+      if (has_view_rules_access) 
         invoice_permissions << :VIEW_RULES_PERMISSION
       end
-      if (has_cm_edit_access(@user, @cm_invoice)) 
+      if (has_cm_edit_access) 
         approval_status = @cm_invoice.approval_status
         if (cm_invoice_editable?(approval_status)) 
           invoice_permissions << :CM_EDIT_SETUP_PERMISSION
@@ -83,7 +83,7 @@ class UserPermissions
           invoice_permissions << :CM_BILLING_PERIOD_ADD_PERMISSION
         end
       end
-      if (has_invoice_log_access(@user, @cm_invoice))
+      if (has_invoice_log_access)
         invoice_permissions << :INVOICE_LOG_PERMISSION
       end
     end

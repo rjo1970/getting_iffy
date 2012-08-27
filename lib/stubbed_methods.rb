@@ -28,57 +28,57 @@ class CMInvoice
 end
 
 class UserPermissions
-  def has_cm_team_role user
-    user.has? :CM_TEAM_ROLE
+  def has_cm_team_role 
+    @user.has? :CM_TEAM_ROLE
   end
   
-  def has_cm_invoice_view_role user
-    user.has? :CM_INVOICE_VIEW_ROLE
+  def has_cm_invoice_view_role 
+    @user.has? :CM_INVOICE_VIEW_ROLE
   end
   
-  def has_invoice_finance_role user
-    user.has? :INVOICE_FINANCE_ROLE 
+  def has_invoice_finance_role
+    @user.has? :INVOICE_FINANCE_ROLE 
   end
   
-  def has_application_access(user, specification = nil)
-    return user.has?(specification) if specification
-    user.has?(:CM_INVOICE_ROLE) || user.has?(:PA_INVOICE_ROLE) ||
-    user.has?(:SDT_INVOICE_ROLE)
+  def has_application_access(specification = nil)
+    return @user.has?(specification) if specification
+    @user.has?(:CM_INVOICE_ROLE) || @user.has?(:PA_INVOICE_ROLE) ||
+    @user.has?(:SDT_INVOICE_ROLE)
   end
   
-  def has_read_access user, cm_invoice
-    cm_invoice.has? :READ_ACCESS
+  def has_read_access
+    @cm_invoice.has? :READ_ACCESS
   end
   
-  def has_edit_access user, cm_invoice
-    cm_invoice.has? :EDIT_ACCESS
+  def has_edit_access
+    @cm_invoice.has? :EDIT_ACCESS
   end
   
-  def has_cm_invoice_close_right user, cm_invoice
-    cm_invoice.has? :CM_INVOICE_CLOSE_RIGHT
+  def has_cm_invoice_close_right
+    @cm_invoice.has? :CM_INVOICE_CLOSE_RIGHT
   end
   
-  def has_approve_access user, cm_invoice
-    cm_invoice.has? :APPROVE_ACCESS
+  def has_approve_access
+    @cm_invoice.has? :APPROVE_ACCESS
   end
   
-  def has_reject_access user, cm_invoice
-    cm_invoice.has? :REJECT_ACCESS
+  def has_reject_access
+    @cm_invoice.has? :REJECT_ACCESS
   end
   
-  def has_configure_rules_access user, cm_invoice
-    cm_invoice.has? :CONFIGURE_RULES_ACCESS
+  def has_configure_rules_access
+    @cm_invoice.has? :CONFIGURE_RULES_ACCESS
   end
   
-  def has_view_rules_access user, cm_invoice
-    cm_invoice.has? :VIEW_RULES_ACCESS
+  def has_view_rules_access
+    @cm_invoice.has? :VIEW_RULES_ACCESS
   end
   
-  def has_cm_edit_access user, cm_invoice
-    cm_invoice.has? :CM_EDIT_ACCESS
+  def has_cm_edit_access 
+    @cm_invoice.has? :CM_EDIT_ACCESS
   end
   
-  def has_invoice_log_access user, cm_invoice
-    cm_invoice.has? :INVOICE_LOG_ACCESS
+  def has_invoice_log_access 
+    @cm_invoice.has? :INVOICE_LOG_ACCESS
   end
 end
