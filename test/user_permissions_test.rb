@@ -1,5 +1,7 @@
-require 'minitest/autorun'
+require 'simplecov'
+SimpleCov.start
 
+require 'minitest/autorun'
 require 'set'
 
 require_relative '../user_permissions'
@@ -208,6 +210,10 @@ class TestUserPermissions < MiniTest::Unit::TestCase
     assert_equal((Set.new [:DEFAULT_PERMISSION, :FINANCE_INVOICE_PERMISSION,
       :CM_INVOICE_USER_PERMISSION, :INVOICE_VIEW_PERMISSION,
       :ACCESS_ALL_INVOICE_PERMISSION, :INVOICE_LOG_PERMISSION]), perms)
+  end
+  
+  def test_sdt_user
+    
   end
 
 end
