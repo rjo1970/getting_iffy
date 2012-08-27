@@ -1,3 +1,9 @@
+# Unit tests.  Since this is a refactoring, you
+# should not change the behavior.  So leave
+# these tests alone.
+# Why are they unit tests rather than specs?
+# They are older than rspec!
+
 require 'simplecov'
 SimpleCov.start
 
@@ -192,7 +198,8 @@ class TestUserPermissions < MiniTest::Unit::TestCase
   end
   
   def test_finance_user_approved_state
-    invoice = CMInvoice.new([:READ_ACCESS, :INVOICE_LOG_ACCESS, :CM_INVOICE_CLOSE_RIGHT])
+    invoice = CMInvoice.new([:READ_ACCESS, :INVOICE_LOG_ACCESS,
+      :CM_INVOICE_CLOSE_RIGHT])
     invoice.approval_status = :APPROVED_STATUS
     up = UserPermissions.new(FINANCE, invoice)
     perms = up.get_permissions
@@ -213,7 +220,12 @@ class TestUserPermissions < MiniTest::Unit::TestCase
   end
   
   def test_sdt_user
-    
+    invoice = CMInvoice.new([:READ_ACCESS])
+    user = User.new([:SDT_INVOICE_ROLE])
+    up = UserPermissions.new(user, invoice)
+    perms = up.get_permissions
+    assert_equal((Set.new [:DEFAULT_PERMISSION, :CM_INVOICE_USER_PERMISSION,
+      :SDT_ANY_INVOICE_PERMISSION, :INVOICE_VIEW_PERMISSION]),perms)
   end
 
 end

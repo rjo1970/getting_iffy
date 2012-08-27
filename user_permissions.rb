@@ -1,5 +1,4 @@
 require 'set'
-require_relative 'lib/stubbed_methods'
 
 class UserPermissions
 

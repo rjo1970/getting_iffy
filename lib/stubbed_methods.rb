@@ -1,3 +1,8 @@
+# KEEP OUT
+# These are stubbed methods to accomodate testing.
+# They are out of bounds.  No touch for kata-fu.
+# Assume they represent a stable API you don't get
+# to change.
 
 module StubbyPerms
   def initialize(perms)
@@ -37,7 +42,8 @@ class UserPermissions
   
   def has_application_access(user, specification = nil)
     return user.has?(specification) if specification
-    user.has?(:CM_INVOICE_ROLE) || user.has?(:PA_INVOICE_ROLE) || user.has?(:SDT_INVOICE_ROLE)
+    user.has?(:CM_INVOICE_ROLE) || user.has?(:PA_INVOICE_ROLE) ||
+    user.has?(:SDT_INVOICE_ROLE)
   end
   
   def has_read_access user, cm_invoice
